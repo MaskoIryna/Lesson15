@@ -1,86 +1,79 @@
 package pages;
 
+import com.codeborne.selenide.ElementsCollection;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-
+import static com.codeborne.selenide.Selenide.*;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
+import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.title;
 
 
 public class RubberDucksPage {
     final static By bottomRubberDucks = By.linkText("Rubber Ducks");
     final static By elementSubcategory = By.linkText("Subcategory");
-    final static By elementSale = By.xpath("//img[@alt='Yellow Duck']/following-sibling::div");
+    public static By elementSale = By.xpath("//img[@alt='Yellow Duck']/following-sibling::div");
     final static By locatorElementRD_Name = By.xpath("//div[@class='name']");
     final static By locatorElementPrice = By.xpath("//span[@class='price']");
-    final static By locatorGreenDuck = By.xpath("//a[@class='link'][@title='Green DucK']");
+    public static By locatorGreenDuck = By.xpath("//a[@class='link'][@title='Green DucK']");
     final static By locatorTextPrice = By.xpath("//*[contains(text(),'Price')]");
-    final static String elementRD_NameClick = "//*[contains(text(),'Name')]";
+    final static By elementRD_NameClick = By.xpath("//*[contains(text(),'Name')]");
+    public static By titleElementSubcategory = By.xpath("//h1[@class='title']");
     public static String expectedTitleRD = "Rubber Ducks | My Store1";
-    public static String expectedTitleSubcategory = "Subcategory | My Store1";
+    public static String expectedSubcategory = "Subcategory";
 
-    public static void clickRubberDucksBottom(WebDriver driver) {
-        driver.findElement(bottomRubberDucks).click();
+    public static void clickRubberDucksBottom() {
+        $(bottomRubberDucks).click();
     }
 
-    public static String getTitleRubberDucksSting(WebDriver driver) {
-        return  driver.getTitle();
+    public static String getTitleRubberDucksSting() {
+        return  title();
     }
-    public static String findElementSubcategoryGetTitle(WebDriver driver) {
-        Actions builder = new Actions(driver);
-        builder.moveToElement(driver.findElement(bottomRubberDucks)).perform();
-
-        builder.moveToElement(driver.findElement(elementSubcategory)).click().perform();
-        return driver.getTitle();
+    public static void  findElementSubcategoryGetTitle() {
+        actions().moveToElement($(bottomRubberDucks)).perform();
+        actions().moveToElement($(elementSubcategory)).click().perform();
     }
-    public static boolean clickNameAndSort(WebDriver driver) {
-        driver.findElement(bottomRubberDucks).click();
+    public static boolean clickNameAndSort() {
         ArrayList<String> actual = new ArrayList<>();
         ArrayList<String> expected = new ArrayList<>();
 
 //List before click "NAME" & sort
-        List<WebElement> elements = driver.findElements(locatorElementRD_Name);
-        for (WebElement counter : elements) {
+        ElementsCollection elements = $$(locatorElementRD_Name);
+        for (SelenideElement counter : elements) {
             expected.add(counter.getText());
         }
         Collections.sort(expected);
 //List after click "Name"
-        driver.findElement(By.xpath(elementRD_NameClick)).click();
-        List<WebElement> elementsAfterClick = driver.findElements(locatorElementRD_Name);
-        for (WebElement counter : elementsAfterClick) {
+       $(elementRD_NameClick).click();
+        ElementsCollection elementsAfterClick = $$(locatorElementRD_Name);
+        for (SelenideElement counter : elementsAfterClick) {
             actual.add(counter.getText());
         }
         return  actual.equals(expected);
     }
 
-    public static boolean findElementSaleRubberDucks(WebDriver driver) {
-        Actions builder = new Actions(driver);
-        builder.moveToElement(driver.findElement(bottomRubberDucks)).perform();
-        builder.moveToElement(driver.findElement(elementSubcategory)).click().perform();
-
-        return driver.findElement(elementSale).getText().
-                contains("SALE");
+    public static void findElementSaleRubberDucks() {
+        actions().moveToElement($(bottomRubberDucks)).perform();
+        actions().moveToElement($(elementSubcategory)).click().perform();
 
     }
-    public static boolean clickPriceAndSortRubberDucksPage(WebDriver driver) {
-        driver.findElement(bottomRubberDucks).click();
+    public static boolean clickPriceAndSortRubberDucksPage() {
+        $(bottomRubberDucks).click();
         ArrayList<Float> actual = new ArrayList<>();
         ArrayList<Float> expected = new ArrayList<>();
 //List before click "Price"
-        List<WebElement> priceBeforeClick = driver.findElements(locatorElementPrice);
-        for (WebElement counter : priceBeforeClick) {
+        ElementsCollection priceBeforeClick = $$(locatorElementPrice);
+        for (SelenideElement counter : priceBeforeClick) {
             String priceString = counter.getText();
             float priceFloat = Float.parseFloat(priceString.substring(0, priceString.length()-2));
             expected.add(priceFloat);
         }
         Collections.sort(expected);
 //List after click "Price"
-        driver.findElement(locatorTextPrice).click();
-        List<WebElement> priceAfterClick = driver.findElements(locatorElementPrice);
-        for (WebElement counter : priceAfterClick) {
+        $(locatorTextPrice).click();
+        ElementsCollection priceAfterClick = $$(locatorElementPrice);
+        for (SelenideElement counter : priceAfterClick) {
             String priceString = counter.getText();
             float priceFloat = Float.parseFloat(priceString.substring(0, priceString.length()-2));
             actual.add(priceFloat);
@@ -88,17 +81,17 @@ public class RubberDucksPage {
         return actual.equals(expected);
     }
 
-    public static boolean greenDuckNewElementTest(WebDriver driver) {
-        Actions builder = new Actions(driver);
-        builder.moveToElement(driver.findElement(bottomRubberDucks)).perform();
+    public static boolean greenDuckNewElementTest() {
+        actions().moveToElement($(bottomRubberDucks)).perform();
+        actions().moveToElement($(elementSubcategory)).click().perform();
 
-        builder.moveToElement(driver.findElement(elementSubcategory)).click().perform();
+        String expectedString = $(locatorGreenDuck).getAccessibleName();
 
-        String expectedString = driver.findElement(locatorGreenDuck).getAccessibleName();
         boolean expectedGreen = expectedString.toLowerCase().contains("Green Duck".toLowerCase());
         boolean expectedNew = expectedString.toLowerCase().contains("NEW".toLowerCase());
 
         return expectedGreen && expectedNew ;
+
     }
 
 

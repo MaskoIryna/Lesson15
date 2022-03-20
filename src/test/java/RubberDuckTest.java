@@ -1,38 +1,42 @@
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RubberDucksPage;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 
 public class RubberDuckTest extends TestBase {
 
     @Test
     public void findRubberDucksTest() {
-        RubberDucksPage.clickRubberDucksBottom(driver);
-        Assert.assertEquals(RubberDucksPage.getTitleRubberDucksSting(driver), RubberDucksPage.expectedTitleRD);
+        RubberDucksPage.clickRubberDucksBottom();
+        Assert.assertEquals(RubberDucksPage.getTitleRubberDucksSting(), RubberDucksPage.expectedTitleRD);
     }
 
     @Test
     public void findElementSubcategoryTest() {
-        RubberDucksPage.findElementSubcategoryGetTitle(driver);
-        Assert.assertEquals( RubberDucksPage.findElementSubcategoryGetTitle(driver), RubberDucksPage.expectedTitleSubcategory);
+        RubberDucksPage.findElementSubcategoryGetTitle();
+        $(RubberDucksPage.titleElementSubcategory).shouldHave(text(RubberDucksPage.expectedSubcategory));
     }
 
     @Test
     public void clickNameAndSortTest() {
-        RubberDucksPage.clickRubberDucksBottom(driver);
-        Assert.assertTrue(RubberDucksPage.clickNameAndSort(driver));
+        RubberDucksPage.clickRubberDucksBottom();
+        Assert.assertTrue(RubberDucksPage.clickNameAndSort());
     }
     @Test
     public void findElementSaleRubberDucksTest() {
-        Assert.assertTrue(RubberDucksPage.findElementSaleRubberDucks(driver));
+        RubberDucksPage.findElementSaleRubberDucks();
+        $(RubberDucksPage.elementSale).shouldHave(text("SALE"));
     }
+
     @Test
     public void clickPriceAndSortRubberDucksPageTest() {
-        Assert.assertTrue(RubberDucksPage.clickPriceAndSortRubberDucksPage(driver));
+        Assert.assertTrue(RubberDucksPage.clickPriceAndSortRubberDucksPage());
 
     }
     @Test
     public void greenDuckNewElementTest() {
-        Assert.assertTrue(RubberDucksPage.greenDuckNewElementTest(driver));
+        Assert.assertTrue(RubberDucksPage.greenDuckNewElementTest());
     }
 
 }

@@ -1,12 +1,13 @@
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DeliveryInformationPage;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.*;
 
-public class DeliveryInformationTest extends TestBase {
+public class DeliveryInformationTest extends TestBase{
 
     @Test
     public void findDeliveryInformationTest() {
-        DeliveryInformationPage.clickDeliveryInformationBottom(driver);
-        Assert.assertEquals(DeliveryInformationPage.getDeliveryInformationTitle(driver), DeliveryInformationPage.expectedTitle);
+        DeliveryInformationPage.clickDeliveryInformationBottom();
+        $(DeliveryInformationPage.titleDeliveryInformation).shouldHave(text(DeliveryInformationPage.expectedTitle));
     }
 }

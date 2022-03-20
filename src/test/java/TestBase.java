@@ -1,23 +1,28 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
+import com.codeborne.selenide.AssertionMode;
+import com.codeborne.selenide.Configuration;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 
+import static com.codeborne.selenide.Browsers.CHROME;
+import static com.codeborne.selenide.Selenide.closeWindow;
+import static com.codeborne.selenide.Selenide.open;
+
 public class TestBase {
-        protected WebDriver driver;
-        protected String baseURL = "https://litecart.stqa.ru/en/";
 
-        @BeforeTest
-        public void setup() {
-            driver = new ChromeDriver();
-            driver.get(baseURL);
-        }
-
-        @AfterTest
-        public void after() {
-            driver.quit();
-        }
+    @BeforeTest
+    public void setup() {
+        Configuration.assertionMode = AssertionMode.STRICT;
+        Configuration.baseUrl = "https://litecart.stqa.ru/en/";
+        Configuration.browser = CHROME;
+        Configuration.pageLoadTimeout = 5000;
+        open(Configuration.baseUrl);
     }
+
+    @AfterTest
+    public void after() {
+        closeWindow();
+    }
+}
 
 
 

@@ -1,15 +1,15 @@
-import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.TermsConditionsPage;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selenide.$;
 
 public class TermsConditionsTest extends TestBase {
     @Test
     public void findTermsConditionsTest() {
 
-      TermsConditionsPage.clickTermsConditionsBottom(driver);
-        String result = TermsConditionsPage.getPageContain(driver);
-        boolean infoTermsConditions = result.contains(TermsConditionsPage.expectedPageContain);
-        Assert.assertTrue(infoTermsConditions);
+        TermsConditionsPage.clickTermsConditionsBottom();
+        $(TermsConditionsPage.pageContain).shouldHave(text(TermsConditionsPage.expectedPageContain));
+
 
     }
 
