@@ -11,8 +11,9 @@ import static com.codeborne.selenide.Selenide.title;
 
 
 public class RubberDucksPage {
-    final static By bottomRubberDucks = By.linkText("Rubber Ducks");
+    public static By bottomRubberDucks = By.linkText("Rubber Ducks");
     final static By elementSubcategory = By.linkText("Subcategory");
+    public static By titleRubberDucksPage = By.xpath("//title");
     public static By elementSale = By.xpath("//img[@alt='Yellow Duck']/following-sibling::div");
     final static By locatorElementRD_Name = By.xpath("//div[@class='name']");
     final static By locatorElementPrice = By.xpath("//span[@class='price']");
@@ -30,7 +31,7 @@ public class RubberDucksPage {
     public static String getTitleRubberDucksSting() {
         return  title();
     }
-    public static void  findElementSubcategoryGetTitle() {
+    public static void findElementSubcategory() {
         actions().moveToElement($(bottomRubberDucks)).perform();
         actions().moveToElement($(elementSubcategory)).click().perform();
     }
@@ -86,6 +87,7 @@ public class RubberDucksPage {
         actions().moveToElement($(elementSubcategory)).click().perform();
 
         String expectedString = $(locatorGreenDuck).getAccessibleName();
+
 
         boolean expectedGreen = expectedString.toLowerCase().contains("Green Duck".toLowerCase());
         boolean expectedNew = expectedString.toLowerCase().contains("NEW".toLowerCase());

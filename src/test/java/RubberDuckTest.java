@@ -1,20 +1,22 @@
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RubberDucksPage;
-import static com.codeborne.selenide.Condition.text;
+
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class RubberDuckTest extends TestBase {
 
     @Test
-    public void findRubberDucksTest() {
-        RubberDucksPage.clickRubberDucksBottom();
-        Assert.assertEquals(RubberDucksPage.getTitleRubberDucksSting(), RubberDucksPage.expectedTitleRD);
+    public void clickRubberDucksTest() {
+        $(RubberDucksPage.bottomRubberDucks).click();
+        $("title").shouldHave(ownText(RubberDucksPage.expectedTitleRD));
     }
 
     @Test
     public void findElementSubcategoryTest() {
-        RubberDucksPage.findElementSubcategoryGetTitle();
+        RubberDucksPage.findElementSubcategory();
         $(RubberDucksPage.titleElementSubcategory).shouldHave(text(RubberDucksPage.expectedSubcategory));
     }
 
@@ -36,6 +38,8 @@ public class RubberDuckTest extends TestBase {
     }
     @Test
     public void greenDuckNewElementTest() {
+
+//        String expectedString = $(RubberDucksPage.locatorGreenDuck).getAccessibleName();
         Assert.assertTrue(RubberDucksPage.greenDuckNewElementTest());
     }
 
