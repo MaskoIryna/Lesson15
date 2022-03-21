@@ -7,19 +7,21 @@ import static com.codeborne.selenide.Selenide.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.title;
+
 
 
 public class RubberDucksPage {
     public static By bottomRubberDucks = By.linkText("Rubber Ducks");
     final static By elementSubcategory = By.linkText("Subcategory");
-    public static By titleRubberDucksPage = By.xpath("//title");
     public static By elementSale = By.xpath("//img[@alt='Yellow Duck']/following-sibling::div");
-    final static By locatorElementRD_Name = By.xpath("//div[@class='name']");
+    public static By locatorElementRD_Name = By.xpath("//div[@class='name']");
     final static By locatorElementPrice = By.xpath("//span[@class='price']");
     public static By locatorGreenDuck = By.xpath("//a[@class='link'][@title='Green DucK']");
+    public static By locatorYellowDuck = By.xpath("//a[@class='link'][@title='Yellow Duck']");
+    public static String locatorYellowDuckStreeng = "//a[@class='link'][@title='Yellow Duck']";
+
     final static By locatorTextPrice = By.xpath("//*[contains(text(),'Price')]");
-    final static By elementRD_NameClick = By.xpath("//*[contains(text(),'Name')]");
+    public static By elementRD_NameClick = By.xpath("//*[contains(text(),'Name')]");
     public static By titleElementSubcategory = By.xpath("//h1[@class='title']");
     public static String expectedTitleRD = "Rubber Ducks | My Store1";
     public static String expectedSubcategory = "Subcategory";
@@ -28,37 +30,11 @@ public class RubberDucksPage {
         $(bottomRubberDucks).click();
     }
 
-    public static String getTitleRubberDucksSting() {
-        return  title();
-    }
-    public static void findElementSubcategory() {
+    public static void findElementSubcategoryClick() {
         actions().moveToElement($(bottomRubberDucks)).perform();
         actions().moveToElement($(elementSubcategory)).click().perform();
     }
-    public static boolean clickNameAndSort() {
-        ArrayList<String> actual = new ArrayList<>();
-        ArrayList<String> expected = new ArrayList<>();
 
-//List before click "NAME" & sort
-        ElementsCollection elements = $$(locatorElementRD_Name);
-        for (SelenideElement counter : elements) {
-            expected.add(counter.getText());
-        }
-        Collections.sort(expected);
-//List after click "Name"
-       $(elementRD_NameClick).click();
-        ElementsCollection elementsAfterClick = $$(locatorElementRD_Name);
-        for (SelenideElement counter : elementsAfterClick) {
-            actual.add(counter.getText());
-        }
-        return  actual.equals(expected);
-    }
-
-    public static void findElementSaleRubberDucks() {
-        actions().moveToElement($(bottomRubberDucks)).perform();
-        actions().moveToElement($(elementSubcategory)).click().perform();
-
-    }
     public static boolean clickPriceAndSortRubberDucksPage() {
         $(bottomRubberDucks).click();
         ArrayList<Float> actual = new ArrayList<>();
@@ -82,19 +58,13 @@ public class RubberDucksPage {
         return actual.equals(expected);
     }
 
-    public static boolean greenDuckNewElementTest() {
-        actions().moveToElement($(bottomRubberDucks)).perform();
-        actions().moveToElement($(elementSubcategory)).click().perform();
-
-        String expectedString = $(locatorGreenDuck).getAccessibleName();
-
-
-        boolean expectedGreen = expectedString.toLowerCase().contains("Green Duck".toLowerCase());
-        boolean expectedNew = expectedString.toLowerCase().contains("NEW".toLowerCase());
-
-        return expectedGreen && expectedNew ;
-
+    public static String greenDuckNewElementTest() {
+        findElementSubcategoryClick();
+        return $(locatorGreenDuck).getAccessibleName() ;
     }
-
-
+    public static String getAccessibility(String locatorYellowDuckStreeng) {
+        findElementSubcategoryClick();
+//        String expectedString = $(By.xpath(locatorYellowDuckStreeng)).getAccessibleName();
+        return $(By.xpath(locatorYellowDuckStreeng)).getAccessibleName();
+    }
 }
