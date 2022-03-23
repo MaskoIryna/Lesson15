@@ -29,7 +29,7 @@ public class RubberDuckTest extends TestBase {
         List<String> elements = $$(RubberDucksPage.locatorElementRD_Name).texts();
         Collections.sort(elements);
         $(RubberDucksPage.elementRD_NameClick).click();
-        assert $$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements);
+        Assert.assertTrue($$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements));
     }
 
     @Test
