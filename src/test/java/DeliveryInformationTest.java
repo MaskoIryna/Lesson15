@@ -9,5 +9,7 @@ public class DeliveryInformationTest extends TestBase{
     public void findDeliveryInformationTest() {
         DeliveryInformationPage.clickDeliveryInformationBottom();
         $(DeliveryInformationPage.titleDeliveryInformation).shouldHave(text(DeliveryInformationPage.expectedTitle));
+        logger.info(String.format("ExpName: %s \n ActualName: %s",DeliveryInformationPage.expectedTitle));
+
     }
 }
