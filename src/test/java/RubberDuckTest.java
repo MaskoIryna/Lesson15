@@ -15,12 +15,18 @@ public class RubberDuckTest extends TestBase {
     public void clickRubberDucksTest() {
         $(RubberDucksPage.bottomRubberDucks).click();
         $("title").shouldHave(ownText(RubberDucksPage.expectedTitleRD));
+        logger.info("INFO clickRubberDucksTest");
+        logger.info(String.format("expected Title is %s,actual %s" ,$("title").getOwnText(),
+                RubberDucksPage.expectedTitleRD));
     }
 
     @Test
     public void findElementSubcategoryTest() {
         RubberDucksPage.findElementSubcategoryClick();
         $(RubberDucksPage.titleElementSubcategory).shouldHave(text(RubberDucksPage.expectedSubcategory));
+        logger.info("INFO findElementSubcategoryTest");
+        logger.info(String.format("expect %s actual %s",$(RubberDucksPage.titleElementSubcategory).getText(),
+                RubberDucksPage.expectedSubcategory));
     }
 
     @Test
@@ -29,12 +35,15 @@ public class RubberDuckTest extends TestBase {
         List<String> elements = $$(RubberDucksPage.locatorElementRD_Name).texts();
         Collections.sort(elements);
         $(RubberDucksPage.elementRD_NameClick).click();
+        logger.info("INFO clickNameAndSortTest");
+        logger.info(String.format("EXPECTED %s ACTUAL %s",elements,$$(RubberDucksPage.locatorElementRD_Name).texts()));
         Assert.assertTrue($$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements));
     }
 
     @Test
     public void clickPriceAndSortRubberDucksPageTest() {
         Assert.assertTrue(RubberDucksPage.clickPriceAndSortRubberDucksPage(),"Price not sort");
+
     }
 
     @Test
@@ -43,6 +52,8 @@ public class RubberDuckTest extends TestBase {
         boolean result = expectedString.toLowerCase().contains("Green Duck".toLowerCase()) &&
                 expectedString.toLowerCase().contains("NEW".toLowerCase());
         Assert.assertTrue(result,"Accessibility not contain new & Green Duck");
+        logger.info("INFO greenDuckIsNewElementTest");
+        logger.info(String.format("%s",expectedString));
     }
     @Test
     public void findElementSaleRubberDucksTest() {
@@ -50,5 +61,7 @@ public class RubberDuckTest extends TestBase {
         boolean result = expectedString.toLowerCase().contains("Yellow Duck".toLowerCase()) &&
                 expectedString.toLowerCase().contains("SALE".toLowerCase());
         Assert.assertTrue(result,"Accessibility not contain sale & Yellow Duck");
+        logger.info("INFO findElementSaleRubberDucksTest");
+        logger.info(String.format("%s",expectedString));
     }
 }

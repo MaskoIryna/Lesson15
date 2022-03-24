@@ -10,7 +10,7 @@ import static com.codeborne.selenide.Selenide.$;
 
 
 
-public class RubberDucksPage {
+public class RubberDucksPage extends TestBase {
     public static By bottomRubberDucks = By.linkText("Rubber Ducks");
     final static By elementSubcategory = By.linkText("Subcategory");
     public static By locatorElementRD_Name = By.xpath("//div[@class='name']");
@@ -52,6 +52,8 @@ public class RubberDucksPage {
             float priceFloat = Float.parseFloat(priceString.substring(0, priceString.length()-2));
             actual.add(priceFloat);
         }
+        logger.info("INFO clickPriceAndSortRubberDucksPageTest");
+        logger.info(String.format("ACTUAL LIST %s EXPECTED LIST %s",actual,expected));
         return actual.equals(expected);
     }
 

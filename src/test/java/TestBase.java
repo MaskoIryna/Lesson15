@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.closeWindow;
 import static com.codeborne.selenide.Selenide.open;
 
 public class TestBase {
-    protected static Logger logger = Logger.getLogger(TestBase.class);
+        protected Logger logger = Logger.getLogger(TestBase.class);
 
     @BeforeTest
     public void setup() {
@@ -22,6 +22,7 @@ public class TestBase {
 
     @AfterTest
     public void after() {
+        logger.debug("close windows");
         closeWindow();
     }
 }
