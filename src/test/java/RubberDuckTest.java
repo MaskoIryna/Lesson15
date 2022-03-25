@@ -37,7 +37,8 @@ public class RubberDuckTest extends TestBase{
         $(RubberDucksPage.elementRD_NameClick).click();
         logger.info("INFO clickNameAndSortTest");
         logger.info(String.format("EXPECTED %s ACTUAL %s",elements,$$(RubberDucksPage.locatorElementRD_Name).texts()));
-        Assert.assertTrue($$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements));
+        $$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements);
+//        Assert.assertTrue($$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements));
     }
 
     @Test

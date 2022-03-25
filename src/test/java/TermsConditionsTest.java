@@ -1,5 +1,4 @@
 import org.testng.annotations.Test;
-import pages.DeliveryInformationPage;
 import pages.TermsConditionsPage;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;

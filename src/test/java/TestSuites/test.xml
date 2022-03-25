@@ -10,5 +10,5 @@
             <class name="NegativeRubberDuckTest"/>
             <class name="TermsConditionsTest"/>
         </classes>
-    </test> <!-- Test -->
-</suite> <!-- Suite -->
+    </test>
+</suite>
