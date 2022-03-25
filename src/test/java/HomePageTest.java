@@ -2,7 +2,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import static com.codeborne.selenide.Selenide.*;
 
-public class HomePageTest extends TestBase {
+public class HomePageTest extends TestBase{
 
     @Test
     public void getTitleHomePageTest() {
