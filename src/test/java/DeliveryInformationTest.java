@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 
-//@Listeners({ ScreenShooter.class})
+@Listeners({ ScreenShooter.class})
 public class DeliveryInformationTest extends TestBase{
 
     @Epic(value ="VERIFICATION_TITLE")

@@ -1,34 +1,31 @@
 package Helper;
-
-import org.apache.commons.io.FileUtils;
+import com.codeborne.selenide.WebDriverRunner;
+import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.openqa.selenium.WebDriver;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
-
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 
 public class ScreenShooter implements ITestListener {
-    private final WebDriver driver;
-
-    public ScreenShooter(WebDriver driver) {
-        this.driver = driver;
-    }
-
 
     @Override
     public void onTestFailure(ITestResult result) {
-
-         File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        String fileName = result.getName() + "screenshot.png";
-        File destFile = new File("D:\\" + fileName);
         try {
-            FileUtils.copyFile(screenshot,destFile);
-        } catch (IOException e) {
+            Allure.addAttachment("Screeshot",getScreenshotAsInputStream());
+        } catch (FileNotFoundException e){
             e.printStackTrace();
         }
+        Allure.addAttachment("Source","text",getPageSource(),"html");
+
+         File screenshot = ((TakesScreenshot)WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.FILE);
+
+    }
+    private static InputStream getScreenshotAsInputStream() throws FileNotFoundException{
+        File screenshot = ((TakesScreenshot)WebDriverRunner.getWebDriver()).getScreenshotAs(OutputType.FILE);
+        return new FileInputStream(screenshot);
+    }
+    private static String getPageSource() {
+        return WebDriverRunner.getWebDriver().getPageSource();
     }
 }
