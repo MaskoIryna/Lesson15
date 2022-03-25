@@ -1,5 +1,6 @@
 
 import Helper.ScreenShooter;
+import io.qameta.allure.Epic;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.DeliveryInformationPage;
@@ -7,9 +8,10 @@ import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.*;
 
 
-@Listeners({ ScreenShooter.class})
+//@Listeners({ ScreenShooter.class})
 public class DeliveryInformationTest extends TestBase{
 
+    @Epic(value ="VERIFICATION_TITLE")
     @Test
     public void findDeliveryInformationTest() {
         DeliveryInformationPage.clickDeliveryInformationBottom();

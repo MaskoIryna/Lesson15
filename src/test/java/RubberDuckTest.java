@@ -1,4 +1,8 @@
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RubberDucksPage;
@@ -10,7 +14,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 
 public class RubberDuckTest extends TestBase{
-
+    @Epic(value ="VERIFICATION_TITLE")
     @Test
     public void clickRubberDucksTest() {
         $(RubberDucksPage.bottomRubberDucks).click();
@@ -20,6 +24,7 @@ public class RubberDuckTest extends TestBase{
                 RubberDucksPage.expectedTitleRD));
     }
 
+    @Epic(value ="VERIFICATION_TITLE")
     @Test
     public void findElementSubcategoryTest() {
         RubberDucksPage.findElementSubcategoryClick();
@@ -29,6 +34,8 @@ public class RubberDuckTest extends TestBase{
                 RubberDucksPage.expectedSubcategory));
     }
 
+
+    @Description(value = "SORT")
     @Test
     public void clickNameAndSortTest() {
         RubberDucksPage.clickRubberDucksBottom();
@@ -41,12 +48,14 @@ public class RubberDuckTest extends TestBase{
 //        Assert.assertTrue($$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements));
     }
 
+    @Description(value = "SORT")
     @Test
     public void clickPriceAndSortRubberDucksPageTest() {
         Assert.assertTrue(RubberDucksPage.clickPriceAndSortRubberDucksPage(),"Price not sort");
 
     }
 
+    @Feature(value = "STICKER")
     @Test
     public void greenDuckIsNewElementTest() {
         String expectedString = RubberDucksPage.getAccessibility(RubberDucksPage.locatorGreenDuck);
@@ -56,6 +65,8 @@ public class RubberDuckTest extends TestBase{
         logger.info("INFO greenDuckIsNewElementTest");
         logger.info(String.format("%s",expectedString));
     }
+
+    @Feature(value = "STICKER")
     @Test
     public void findElementSaleRubberDucksTest() {
         String expectedString = RubberDucksPage.getAccessibility(RubberDucksPage.locatorYellowDuck);

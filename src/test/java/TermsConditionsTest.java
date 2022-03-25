@@ -1,9 +1,12 @@
+import io.qameta.allure.Epic;
 import org.testng.annotations.Test;
 import pages.TermsConditionsPage;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class TermsConditionsTest extends TestBase {
+
+    @Epic(value ="VERIFICATION_TITLE")
     @Test
     public void findTermsConditionsTest() {
 

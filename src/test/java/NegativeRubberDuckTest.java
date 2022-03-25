@@ -1,3 +1,6 @@
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RubberDucksPage;
@@ -13,8 +16,9 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class NegativeRubberDuckTest extends TestBase{
 
+    @Epic(value ="VERIFICATION_TITLE")
     @Test
-    public void clickRubberDucksNTest() {
+    public void clickRubberDucksNegativeTest() {
         $(RubberDucksPage.bottomRubberDucks).click();
         $("title").shouldHave(ownText(RubberDucksPage.expectedTitleRD));
         logger.info("INFO clickRubberDucksTest");
@@ -23,8 +27,9 @@ public class NegativeRubberDuckTest extends TestBase{
         Assert.fail("negative");
     }
 
+    @Epic(value ="VERIFICATION_TITLE")
     @Test
-    public void findElementSubcategoryNTest() {
+    public void findElementSubcategoryNegativeTest() {
         RubberDucksPage.findElementSubcategoryClick();
         $(RubberDucksPage.titleElementSubcategory).shouldHave(text(RubberDucksPage.expectedSubcategory));
         logger.info("INFO findElementSubcategoryTest");
@@ -33,8 +38,9 @@ public class NegativeRubberDuckTest extends TestBase{
         Assert.fail("negative");
     }
 
+    @Description(value = "SORT")
     @Test
-    public void clickNameAndSortNTest() {
+    public void clickNameAndSortNegativeTest() {
         RubberDucksPage.clickRubberDucksBottom();
         List<String> elements = $$(RubberDucksPage.locatorElementRD_Name).texts();
         Collections.sort(elements);
@@ -44,14 +50,16 @@ public class NegativeRubberDuckTest extends TestBase{
         Assert.assertFalse($$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements));
     }
 
+    @Description(value = "SORT")
     @Test
-    public void clickPriceAndSortRubberDucksPageNTest() {
+    public void clickPriceAndSortRubberDucksPageNegativeTest() {
         Assert.assertFalse(RubberDucksPage.clickPriceAndSortRubberDucksPage(),"Price not sort");
 
     }
 
+    @Feature(value = "STICKER")
     @Test
-    public void greenDuckIsNewElementNTest() {
+    public void greenDuckIsNewElementNegativeTest() {
         String expectedString = RubberDucksPage.getAccessibility(RubberDucksPage.locatorGreenDuck);
         boolean result = expectedString.toLowerCase().contains("Green Duck".toLowerCase()) &&
                 expectedString.toLowerCase().contains("NEW".toLowerCase());
@@ -59,8 +67,10 @@ public class NegativeRubberDuckTest extends TestBase{
         logger.info("INFO greenDuckIsNewElementTest");
         logger.info(String.format("%s",expectedString));
     }
+
+    @Feature(value = "STICKER")
     @Test
-    public void findElementSaleRubberDucksNTest() {
+    public void findElementSaleRubberDucksNegativeTest() {
         String expectedString = RubberDucksPage.getAccessibility(RubberDucksPage.locatorYellowDuck);
         boolean result = expectedString.toLowerCase().contains("Yellow Duck".toLowerCase()) &&
                 expectedString.toLowerCase().contains("SALE".toLowerCase());
