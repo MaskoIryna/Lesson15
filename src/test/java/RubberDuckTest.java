@@ -2,7 +2,6 @@
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
-import io.qameta.allure.Story;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.RubberDucksPage;
@@ -35,8 +34,9 @@ public class RubberDuckTest extends TestBase{
     }
 
 
-    @Description(value = "SORT")
+
     @Test
+    @Description(value = "SORT")
     public void clickNameAndSortTest() {
         RubberDucksPage.clickRubberDucksBottom();
         List<String> elements = $$(RubberDucksPage.locatorElementRD_Name).texts();
@@ -48,8 +48,9 @@ public class RubberDuckTest extends TestBase{
 //        Assert.assertTrue($$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements));
     }
 
-    @Description(value = "SORT")
+
     @Test
+    @Description(value = "SORT")
     public void clickPriceAndSortRubberDucksPageTest() {
         Assert.assertTrue(RubberDucksPage.clickPriceAndSortRubberDucksPage(),"Price not sort");
 

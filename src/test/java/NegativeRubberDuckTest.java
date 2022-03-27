@@ -38,8 +38,9 @@ public class NegativeRubberDuckTest extends TestBase{
         Assert.fail("negative");
     }
 
-    @Description(value = "SORT")
+
     @Test
+    @Description(value = "SORT")
     public void clickNameAndSortNegativeTest() {
         RubberDucksPage.clickRubberDucksBottom();
         List<String> elements = $$(RubberDucksPage.locatorElementRD_Name).texts();
@@ -50,8 +51,9 @@ public class NegativeRubberDuckTest extends TestBase{
         Assert.assertFalse($$(RubberDucksPage.locatorElementRD_Name).texts().equals(elements));
     }
 
-    @Description(value = "SORT")
+
     @Test
+    @Description(value = "SORT")
     public void clickPriceAndSortRubberDucksPageNegativeTest() {
         Assert.assertFalse(RubberDucksPage.clickPriceAndSortRubberDucksPage(),"Price not sort");
 
