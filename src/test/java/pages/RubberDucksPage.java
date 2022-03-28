@@ -10,16 +10,13 @@ import static com.codeborne.selenide.Selenide.$;
 
 
 
-public class RubberDucksPage {
+public class RubberDucksPage extends TestBase {
     public static By bottomRubberDucks = By.linkText("Rubber Ducks");
     final static By elementSubcategory = By.linkText("Subcategory");
-    public static By elementSale = By.xpath("//img[@alt='Yellow Duck']/following-sibling::div");
     public static By locatorElementRD_Name = By.xpath("//div[@class='name']");
-    final static By locatorElementPrice = By.xpath("//span[@class='price']");
+    public static By locatorElementPrice = By.xpath("//span[@class='price']");
     public static By locatorGreenDuck = By.xpath("//a[@class='link'][@title='Green DucK']");
     public static By locatorYellowDuck = By.xpath("//a[@class='link'][@title='Yellow Duck']");
-    public static String locatorYellowDuckStreeng = "//a[@class='link'][@title='Yellow Duck']";
-
     final static By locatorTextPrice = By.xpath("//*[contains(text(),'Price')]");
     public static By elementRD_NameClick = By.xpath("//*[contains(text(),'Name')]");
     public static By titleElementSubcategory = By.xpath("//h1[@class='title']");
@@ -55,16 +52,13 @@ public class RubberDucksPage {
             float priceFloat = Float.parseFloat(priceString.substring(0, priceString.length()-2));
             actual.add(priceFloat);
         }
+        logger.info("INFO clickPriceAndSortRubberDucksPageTest");
+        logger.info(String.format("ACTUAL LIST %s EXPECTED LIST %s",actual,expected));
         return actual.equals(expected);
     }
 
-    public static String greenDuckNewElementTest() {
+    public static String getAccessibility(By locator) {
         findElementSubcategoryClick();
-        return $(locatorGreenDuck).getAccessibleName() ;
-    }
-    public static String getAccessibility(String locatorYellowDuckStreeng) {
-        findElementSubcategoryClick();
-//        String expectedString = $(By.xpath(locatorYellowDuckStreeng)).getAccessibleName();
-        return $(By.xpath(locatorYellowDuckStreeng)).getAccessibleName();
+        return $(locator).getAccessibleName();
     }
 }
